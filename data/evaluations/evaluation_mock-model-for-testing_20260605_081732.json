@@ -1,0 +1,183 @@
+{
+  "summary": {
+    "model": "mock-model-for-testing",
+    "timestamp": "2026-06-05T08:17:32.313532",
+    "responses_file": "../data/responses/responses_mock-model-for-testing_20260605_000000.json",
+    "total_cases": 3,
+    "avg_total_score": 64.39,
+    "avg_identification_score": 66.67,
+    "id_accuracy_by_category": {
+      "A": 1.0,
+      "B": 1.0,
+      "C": 0.0
+    },
+    "code_execution_stats": {
+      "total_with_code": 3,
+      "successful_runs": 2
+    }
+  },
+  "evaluations": [
+    {
+      "test_case_id": "L1_standard_tsp",
+      "model": "mock-model-for-testing",
+      "layer": 1,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "traveling salesman",
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.00017952919006347656}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.259,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.259,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 96.58,
+        "identification_score": 100.0,
+        "algorithm_score": 82.9,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "traveling salesman",
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.259
+        }
+      }
+    },
+    {
+      "test_case_id": "L2_molecular_ring",
+      "model": "mock-model-for-testing",
+      "layer": 2,
+      "category": "B",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "traveling salesman",
+          "tsp",
+          "mathematically equivalent"
+        ],
+        "category": "B"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.0002772808074951172}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.09,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.09,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 96.58,
+        "identification_score": 100.0,
+        "algorithm_score": 82.9,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "traveling salesman",
+            "tsp",
+            "mathematically equivalent"
+          ],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.09
+        }
+      }
+    },
+    {
+      "test_case_id": "L4_tsp_time_window",
+      "model": "mock-model-for-testing",
+      "layer": 4,
+      "category": "C",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": false,
+        "confidence_score": 0.0,
+        "matched_keywords": [],
+        "category": "C"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "scores": {
+        "total_score": 0.0,
+        "identification_score": 0.0,
+        "algorithm_score": null,
+        "breakdown": {
+          "identified_correctly": false,
+          "id_confidence": 0.0,
+          "matched_keywords": [],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null
+        }
+      }
+    }
+  ]
+}

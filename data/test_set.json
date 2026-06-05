@@ -1,0 +1,130 @@
+{
+  "test_cases": [
+    {
+      "id": "L1_standard_tsp",
+      "layer": 1,
+      "category": "A",
+      "prompt": "Given n cities and the distance between any two cities, a traveling salesman needs to start from one city, visit all cities exactly once, and return to the starting city. Find the shortest route length. What kind of optimization problem is this?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80,
+        "optimal_route": [0, 1, 3, 4, 2]
+      }
+    },
+    {
+      "id": "L1_math_formal",
+      "layer": 1,
+      "category": "A",
+      "prompt": "Given a complete graph G=(V,E) with edge weight function w:E→ℝ⁺, find a Hamiltonian cycle C that minimizes ∑_{e∈C} w(e). What is this problem called in optimization theory?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80
+      }
+    },
+    {
+      "id": "L2_molecular_ring",
+      "layer": 2,
+      "category": "B",
+      "prompt": "In chemical synthesis, there are n molecular monomers that need to be connected into a cyclic polymer. Connecting monomer i and monomer j releases energy e(i,j). Each monomer must be used exactly once, forming a ring. How should they be ordered to maximize total energy release? What classic optimization problem is this mathematically equivalent to?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80,
+        "note": "Minimizing negative energy = minimizing distance"
+      }
+    },
+    {
+      "id": "L2_network_routing",
+      "layer": 2,
+      "category": "B",
+      "prompt": "A data packet needs to visit n nodes in a network exactly once and return to the source node. The transmission delay from node i to node j is d(i,j). How should the visit order be arranged to minimize total delay? What type of optimization problem is this?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80
+      }
+    },
+    {
+      "id": "L4_tsp_time_window",
+      "layer": 4,
+      "category": "C",
+      "prompt": "Visit n cities exactly once and return to the starting city. Each city has a service time window, and you must arrive within that window. What is this problem called? What is the key difference from the classic TSP?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "TSP with Time Windows (TSPTW) / Vehicle Routing Problem with Time Windows",
+        "note": "No code expected for identification-only questions"
+      }
+    },
+    {
+      "id": "L4_cvrp",
+      "layer": 4,
+      "category": "C",
+      "prompt": "A vehicle departs from a depot, visits n customer locations exactly once, and returns to the depot. The vehicle has a capacity limit, and each customer location has a demand quantity. What is this problem called?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "Capacitated Vehicle Routing Problem (CVRP)",
+        "note": "No code expected for identification-only questions"
+      }
+    },
+    {
+      "id": "L5_delivery_algo",
+      "layer": 5,
+      "category": "A",
+      "prompt": "A delivery person needs to deliver packages to 5 locations from a distribution center, visiting each location exactly once, and then return to the center. The travel time matrix between locations is given. Please design an algorithm to plan the route that minimizes total travel time. Do not name the problem, just provide the algorithm directly.",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "optimal_distance": 80,
+        "note": "Algorithm design expected"
+      }
+    },
+    {
+      "id": "L6_benchmark",
+      "layer": 6,
+      "category": "A",
+      "prompt": "For the following 5-city TSP instance (distance matrix provided), please generate solving code and report the route and total distance you obtain. We will compare with the known optimal solution.",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "optimal_distance": 80,
+        "optimal_route": [0, 1, 3, 4, 2]
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# TSPclass - LLM Algorithm Design Evaluation Framework
+# Dependencies:
+openai>=1.0.0

@@ -1,0 +1,53 @@
+{
+  "model": "mock-model-for-testing",
+  "timestamp": "20260605_000000",
+  "test_set": "test_set.json",
+  "total_cases": 3,
+  "responses": [
+    {
+      "test_case_id": "L1_standard_tsp",
+      "model": "mock-model-for-testing",
+      "layer": 1,
+      "category": "A",
+      "prompt": "Given n cities...",
+      "system_prompt": "...",
+      "response_text": "This is the **Traveling Salesman Problem (TSP)**, a classic NP-hard combinatorial optimization problem.\n\nThe goal is to find a Hamiltonian cycle in a complete weighted graph that minimizes the total edge weight.\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "response_json": null,
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "usage": {"prompt_tokens": 100, "completion_tokens": 200, "total_tokens": 300},
+      "error": null,
+      "elapsed_seconds": 2.5,
+      "timestamp": "2026-06-05T00:00:00"
+    },
+    {
+      "test_case_id": "L2_molecular_ring",
+      "model": "mock-model-for-testing",
+      "layer": 2,
+      "category": "B",
+      "prompt": "In chemical synthesis...",
+      "system_prompt": "...",
+      "response_text": "This problem is about arranging molecules in a ring to maximize total bond energy. This is mathematically equivalent to the Traveling Salesman Problem (TSP). By negating the energy values, maximizing energy release becomes minimizing total cost.\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "response_json": null,
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "usage": {"prompt_tokens": 120, "completion_tokens": 250, "total_tokens": 370},
+      "error": null,
+      "elapsed_seconds": 3.0,
+      "timestamp": "2026-06-05T00:00:03"
+    },
+    {
+      "test_case_id": "L4_tsp_time_window",
+      "model": "mock-model-for-testing",
+      "layer": 4,
+      "category": "C",
+      "prompt": "Visit n cities exactly once...",
+      "system_prompt": "...",
+      "response_text": "This is the Traveling Salesman Problem (TSP). The time window constraint adds complexity but the fundamental problem is still TSP.",
+      "response_json": null,
+      "generated_code": null,
+      "usage": {"prompt_tokens": 80, "completion_tokens": 100, "total_tokens": 180},
+      "error": null,
+      "elapsed_seconds": 1.5,
+      "timestamp": "2026-06-05T00:00:06"
+    }
+  ]
+}
