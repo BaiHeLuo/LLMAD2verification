@@ -1,0 +1,147 @@
+{
+  "model": "mock-model",
+  "timestamp": "20260605_120000",
+  "test_set": "test_set.json",
+  "total_cases": 13,
+  "responses": [
+    {
+      "test_case_id": "L1_01_standard_tsp",
+      "model": "mock-model",
+      "layer": 1,
+      "category": "A",
+      "prompt": "Given n cities...",
+      "response_text": "This is the **Traveling Salesman Problem (TSP)**, a classic NP-hard combinatorial optimization problem. The goal is to find a Hamiltonian cycle in a complete weighted graph.\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "error": null,
+      "elapsed_seconds": 2.0
+    },
+    {
+      "test_case_id": "L2_01_molecular_ring",
+      "model": "mock-model",
+      "layer": 2,
+      "category": "B",
+      "prompt": "In chemical synthesis...",
+      "response_text": "This is mathematically equivalent to the Traveling Salesman Problem (TSP). By negating energy values, maximizing energy release becomes minimizing total cost. The ring structure corresponds to a Hamiltonian cycle.\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "error": null,
+      "elapsed_seconds": 2.5
+    },
+    {
+      "test_case_id": "L3_01_no_return",
+      "model": "mock-model",
+      "layer": 3,
+      "category": "A",
+      "prompt": "Visit n cities, each exactly once, but NOT return...",
+      "response_text": "This is the **Hamiltonian Path Problem** (also known as the Open TSP or shortest Hamiltonian path). Unlike the standard TSP which requires a Hamiltonian cycle, this variant only requires a Hamiltonian path. Both are NP-hard, but the path version can have different optimal solutions since it doesn't need to close the tour.",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 1.5
+    },
+    {
+      "test_case_id": "L4_01_tsp_time_window",
+      "model": "mock-model",
+      "layer": 4,
+      "category": "C",
+      "prompt": "Visit n cities with time windows...",
+      "response_text": "This is the **TSP with Time Windows (TSPTW)**, a variant of the classic TSP. The key differences are: (1) feasibility becomes much harder — even finding a feasible solution is NP-complete, (2) the time window constraints add a temporal dimension, (3) solution approaches must handle ordering feasibility differently from pure TSP.",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 1.8
+    },
+    {
+      "test_case_id": "L5_01_delivery_algo",
+      "model": "mock-model",
+      "layer": 5,
+      "category": "A",
+      "prompt": "Delivery person algorithm...",
+      "response_text": "I'll design a brute-force algorithm for this routing problem:\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "error": null,
+      "elapsed_seconds": 3.0
+    },
+    {
+      "test_case_id": "L6_01_benchmark_5city",
+      "model": "mock-model",
+      "layer": 6,
+      "category": "A",
+      "prompt": "5-city TSP benchmark...",
+      "response_text": "Here is the exact solver for the 5-city instance:\n\n```python\ndef solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}\n```",
+      "generated_code": "def solve(distance_matrix):\n    n = len(distance_matrix)\n    from itertools import permutations\n    best_dist = float('inf')\n    best_route = None\n    for perm in permutations(range(n)):\n        dist = sum(distance_matrix[perm[i]][perm[(i+1)%n]] for i in range(n))\n        if dist < best_dist:\n            best_dist = dist\n            best_route = list(perm)\n    return {'route': best_route, 'total_distance': best_dist}",
+      "error": null,
+      "elapsed_seconds": 2.2
+    },
+    {
+      "test_case_id": "L7_01_gradual_tsp",
+      "model": "mock-model",
+      "layer": 7,
+      "category": "A",
+      "multi_turn": true,
+      "turns": [
+        {"prompt": "There are n points...", "response": "This could be a clustering problem, or a minimum spanning tree. Not enough info yet.", "elapsed_seconds": 1.0},
+        {"prompt": "Need ordering...", "response": "An ordering problem — could be scheduling or sequencing. Maybe a permutation optimization problem?", "elapsed_seconds": 1.2},
+        {"prompt": "Must form cycle...", "response": "A cycle through all points — this sounds like it could be a Hamiltonian cycle problem or TSP.", "elapsed_seconds": 1.1},
+        {"prompt": "Minimize sum...", "response": "This is the Traveling Salesman Problem (TSP)! The cycle constraint + minimize total edge weight = classic TSP.", "elapsed_seconds": 1.3}
+      ],
+      "prompt": "[multi-turn prompts]",
+      "response_text": "Turn 1: clustering\nTurn 2: scheduling\nTurn 3: Hamiltonian cycle / TSP\nTurn 4: Traveling Salesman Problem (TSP)",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 4.6
+    },
+    {
+      "test_case_id": "L8_01_clear_tsp",
+      "model": "mock-model",
+      "layer": 8,
+      "category": "A",
+      "prompt": "Is this TSP?",
+      "response_text": "(1) **Judgment**: Yes\n(2) **Reasoning**: The problem contains all defining features of TSP — visiting all cities exactly once, returning to start (Hamiltonian cycle), and minimizing total distance.\n(3) **Confidence**: 98%",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 1.5
+    },
+    {
+      "test_case_id": "L8_02_similar_problem",
+      "model": "mock-model",
+      "layer": 8,
+      "category": "C",
+      "prompt": "Is TSPTW the standard TSP?",
+      "response_text": "(1) **Judgment**: No\n(2) **Reasoning**: The time window constraint fundamentally changes the problem. Standard TSP only considers distance, while TSPTW adds temporal constraints that can make feasible solutions impossible regardless of distance. The complexity class changes from NP-hard optimization to a harder variant.\n(3) **Confidence**: 90%",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 1.8
+    },
+    {
+      "test_case_id": "L9_01_reasoning_trace",
+      "model": "mock-model",
+      "layer": 9,
+      "category": "A",
+      "prompt": "Metacognitive analysis of TSP identification...",
+      "response_text": "**1. Reasoning Chain:**\nStep 1: Identified 'visit all points' → suggests permutation problem\nStep 2: 'Exactly once' → eliminates covering problems\nStep 3: 'Return to start' → cycle structure (Hamiltonian)\nStep 4: 'Minimize distance' → optimization variant = TSP\n\n**2. Critical Features (ranked):**\n1. Return to start (cycle vs path distinction)\n2. Visit all exactly once (Hamiltonian constraint)\n3. Minimize distance (optimization vs feasibility)\n\n**3. Potential Pitfalls:**\nCould confuse with Vehicle Routing Problem, but VRP has multiple vehicles. Could confuse with Chinese Postman, but that requires visiting edges not vertices.\n\n**4. Uncertainty Source:**\nGreatest uncertainty comes from constraints — if there were capacity or time window constraints, it would shift to a VRP variant rather than pure TSP.",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 3.5
+    },
+    {
+      "test_case_id": "L10_01_cross_transfer",
+      "model": "mock-model",
+      "layer": 10,
+      "category": "A",
+      "prompt": "Adapt nearest neighbor for drone delivery...",
+      "response_text": "**1. Adaptation Explanation:**\nThe standard nearest neighbor algorithm needs modification because the drone has limited battery. After each delivery, we must check if the drone has enough battery to deliver to the nearest unvisited location AND return to the warehouse. If not, it must return to recharge first.\n\n**2. Pseudocode:**\nWhile undelivered locations remain:\n  - Find nearest undelivered location\n  - If battery >= distance_to_nearest + return_distance: deliver\n  - Else: return to warehouse, recharge, then deliver\n\n**3. Implementation:**\n```python\ndef solve_drone(distance_matrix, battery_capacity, delivery_locations):\n    current = 0\n    battery = battery_capacity\n    route = [current]\n    remaining = set(delivery_locations)\n    while remaining:\n        nearest = min(remaining, key=lambda x: distance_matrix[current][x])\n        dist_to = distance_matrix[current][nearest]\n        dist_return = distance_matrix[nearest][0]\n        if battery >= dist_to + dist_return:\n            route.append(nearest)\n            battery -= dist_to\n            remaining.remove(nearest)\n            current = nearest\n        else:\n            route.append(0)\n            battery = battery_capacity\n            current = 0\n    if current != 0:\n        route.append(0)\n    total = sum(distance_matrix[route[i]][route[i+1]] for i in range(len(route)-1))\n    return {'route': route, 'total_distance': total}\n```\n\n**4. Comparison with standard TSP:**\nThe solution structure is fundamentally different — the route may visit the warehouse multiple times, creating a multi-tour solution rather than a single Hamiltonian cycle. This makes it more similar to VRP than TSP.",
+      "generated_code": "def solve_drone(distance_matrix, battery_capacity, delivery_locations):\n    current = 0\n    battery = battery_capacity\n    route = [current]\n    remaining = set(delivery_locations)\n    while remaining:\n        nearest = min(remaining, key=lambda x: distance_matrix[current][x])\n        dist_to = distance_matrix[current][nearest]\n        dist_return = distance_matrix[nearest][0]\n        if battery >= dist_to + dist_return:\n            route.append(nearest)\n            battery -= dist_to\n            remaining.remove(nearest)\n            current = nearest\n        else:\n            route.append(0)\n            battery = battery_capacity\n            current = 0\n    if current != 0:\n        route.append(0)\n    total = sum(distance_matrix[route[i]][route[i+1]] for i in range(len(route)-1))\n    return {'route': route, 'total_distance': total}",
+      "error": null,
+      "elapsed_seconds": 5.0
+    },
+    {
+      "test_case_id": "L10_02_analogy_construction",
+      "model": "mock-model",
+      "layer": 10,
+      "category": "D",
+      "prompt": "Construct knapsack-like problem in new domain...",
+      "response_text": "**Novel Domain: Music Playlist Curation**\n\nA DJ is curating a playlist for a 60-minute radio show. Each song has a duration (weight) and an audience engagement score (value). The total playlist duration cannot exceed 60 minutes. Select songs to maximize total engagement.\n\n**Mapping to Knapsack:**\n- Items = songs in the library\n- Weights = song durations (minutes)\n- Values = audience engagement scores\n- Capacity = 60 minutes\n\nThis preserves the exact mathematical structure of the 0/1 Knapsack problem: maximize ∑v_i·x_i subject to ∑w_i·x_i ≤ W, x_i ∈ {0,1}.\n\nThe key insight is that the capacity constraint (time limit) and the binary selection (include/exclude each song) create the same computational structure as the classic knapsack.",
+      "generated_code": null,
+      "error": null,
+      "elapsed_seconds": 3.0
+    }
+  ]
+}

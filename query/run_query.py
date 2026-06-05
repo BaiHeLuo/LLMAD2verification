@@ -57,14 +57,95 @@ def build_prompt(test_case: dict) -> str:
     prompt = test_case["prompt"]
 
     # 如果有附加信息（如距离矩阵），附加到提示词后
-    if "distance_matrix" in test_case:
+    if test_case.get("distance_matrix") is not None:
         prompt += "\n\nDistance Matrix:\n"
         prompt += json.dumps(test_case["distance_matrix"], indent=2)
 
     if "expected_output" in test_case:
-        prompt += f"\n\nFor reference, the known optimal route length is: {test_case['expected_output'].get('optimal_distance', 'N/A')}"
+        opt = test_case['expected_output'].get('optimal_distance', 'N/A')
+        prompt += f"\n\nFor reference, the known optimal route length is: {opt}"
 
     return prompt
+
+
+def query_multi_turn(client: LLMClient, test_case: dict) -> dict:
+    """
+    多轮对话查询（用于 Layer 7 延迟识别等）。
+    按顺序发送 prompts 列表中的每个提示词，
+    将前一轮的回答作为上下文传入下一轮。
+    """
+    prompts = test_case.get("prompts", [])
+    if not prompts:
+        return query_single(client, test_case)
+
+    all_turns = []
+    messages = []
+    if test_case.get("system_prompt"):
+        messages.append({"role": "system", "content": test_case["system_prompt"]})
+
+    total_start = time.time()
+    error = None
+
+    for i, prompt in enumerate(prompts):
+        print(f"  -> Turn {i+1}/{len(prompts)}...", end="", flush=True)
+        messages.append({"role": "user", "content": prompt})
+
+        try:
+            start = time.time()
+            from openai import OpenAI
+            response = client.client.chat.completions.create(
+                model=client.cfg["model"],
+                messages=messages,
+                max_tokens=client.cfg["max_tokens"],
+                temperature=client.cfg["temperature"],
+            )
+            elapsed = time.time() - start
+            raw_text = response.choices[0].message.content
+
+            messages.append({"role": "assistant", "content": raw_text})
+            all_turns.append({
+                "prompt": prompt,
+                "response": raw_text,
+                "elapsed_seconds": round(elapsed, 2),
+            })
+            print(f" ✓ ({elapsed:.1f}s)")
+
+        except Exception as e:
+            error_msg = f"{type(e).__name__}: {e}"
+            all_turns.append({
+                "prompt": prompt,
+                "response": None,
+                "error": error_msg,
+            })
+            error = error_msg
+            print(f" ✗ ({error_msg[:50]})")
+            break
+
+        if i < len(prompts) - 1:
+            time.sleep(1)
+
+    total_elapsed = time.time() - total_start
+    full_text = "\n\n".join(
+        t.get("response", "") for t in all_turns if t.get("response")
+    )
+
+    return {
+        "model": client.model_name,
+        "test_case_id": test_case["id"],
+        "layer": test_case.get("layer"),
+        "category": test_case.get("category"),
+        "prompt": json.dumps(prompts),  # 保存完整 prompts
+        "system_prompt": test_case.get("system_prompt"),
+        "response_text": full_text,
+        "turns": all_turns,
+        "multi_turn": True,
+        "generated_code": extract_code(full_text),
+        "response_json": None,
+        "usage": None,
+        "error": error,
+        "elapsed_seconds": round(total_elapsed, 2),
+        "timestamp": datetime.now().isoformat(),
+    }
 
 
 def query_single(client: LLMClient, test_case: dict) -> dict:
@@ -109,7 +190,12 @@ def run(test_set_path: str, model_names: list[str], output_dir: str):
 
         for i, tc in enumerate(test_cases):
             print(f"[{i+1}/{len(test_cases)}] Layer {tc.get('layer','?')} | {tc['id']}")
-            resp = query_single(client, tc)
+
+            # 判断是否为多轮对话（Layer 7 等）
+            if tc.get("multi_turn") or "prompts" in tc:
+                resp = query_multi_turn(client, tc)
+            else:
+                resp = query_single(client, tc)
             responses.append(resp)
 
             # 请求间隔，避免 rate limit

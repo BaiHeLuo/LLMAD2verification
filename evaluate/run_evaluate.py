@@ -19,6 +19,10 @@ from metrics import (
     score_algorithm_performance,
     compute_overall_score,
     compute_cross_model_metrics,
+    score_delayed_identification,
+    score_confidence_calibration,
+    score_metacognition,
+    score_transfer_analogy,
 )
 
 # ============================================================
@@ -138,11 +142,47 @@ def evaluate_response(
     eval_result["code_execution"] = code_result
     eval_result["algorithm_performance"] = alg_result
 
-    # ---- 3. 综合评分 ----
+    # ---- 3. Layer 7-10 专属评估 ----
+    extra_scores = {}
+    response_text = response.get("response_text", "")
+
+    if layer == 7 and response.get("multi_turn") and response.get("turns"):
+        print(f"    -> 延迟识别评估 (Layer 7)...", end="", flush=True)
+        delayed = score_delayed_identification(response["turns"], category)
+        extra_scores["delayed_id"] = delayed
+        eval_result["delayed_identification"] = delayed
+        turn_info = f"首次识别: Turn {delayed['first_correct_turn'] or 'N/A'}/{delayed['total_turns']}"
+        print(f" ✓ ({turn_info})")
+
+    elif layer == 8:
+        print(f"    -> 置信度校准评估 (Layer 8)...", end="", flush=True)
+        cal = score_confidence_calibration(response_text, expected)
+        extra_scores["confidence_cal"] = cal
+        eval_result["confidence_calibration"] = cal
+        print(f" ✓ (conf={cal['extracted_confidence']}, judg={cal['judgment_correct']})")
+
+    elif layer == 9:
+        print(f"    -> 元认知评估 (Layer 9)...", end="", flush=True)
+        meta = score_metacognition(response_text)
+        extra_scores["metacognition"] = meta
+        eval_result["metacognition"] = meta
+        print(f" ✓ (score={meta['metacognition_score']})")
+
+    elif layer == 10:
+        print(f"    -> 迁移与类比评估 (Layer 10)...", end="", flush=True)
+        transfer = score_transfer_analogy(
+            response_text, has_code=(response.get("generated_code") is not None)
+        )
+        extra_scores["transfer"] = transfer
+        eval_result["transfer_analogy"] = transfer
+        print(f" ✓ (score={transfer['transfer_score']})")
+
+    # ---- 4. 综合评分 ----
     eval_result["scores"] = compute_overall_score(
         identification=id_result,
         algorithm_perf=alg_result,
         layer=layer,
+        extra_scores=extra_scores if extra_scores else None,
     )
 
     return eval_result
@@ -192,6 +232,7 @@ def run_evaluation(
             sum(ev["scores"]["identification_score"] for ev in evaluations) / len(evaluations), 2
         ) if evaluations else 0,
         "id_accuracy_by_category": {},
+        "avg_score_by_layer": {},
         "code_execution_stats": {
             "total_with_code": sum(1 for ev in evaluations if ev.get("code_execution")),
             "successful_runs": sum(
@@ -208,6 +249,13 @@ def run_evaluation(
             correct = sum(1 for ev in cat_evals if ev["scores"]["identification_score"] > 50)
             summary["id_accuracy_by_category"][cat] = round(correct / len(cat_evals), 3)
 
+    # 按层级统计平均分
+    for layer in range(1, 11):
+        layer_evals = [ev for ev in evaluations if ev["layer"] == layer]
+        if layer_evals:
+            avg = sum(ev["scores"]["total_score"] for ev in layer_evals) / len(layer_evals)
+            summary["avg_score_by_layer"][layer] = round(avg, 2)
+
     result = {
         "summary": summary,
         "evaluations": evaluations,
@@ -223,6 +271,7 @@ def run_evaluation(
     print(f"评估完成！结果已保存: {out_file}")
     print(f"平均综合评分: {summary['avg_total_score']}/100")
     print(f"识别准确率 (按类别): {summary['id_accuracy_by_category']}")
+    print(f"各层平均评分: {summary['avg_score_by_layer']}")
     print(f"代码执行: {summary['code_execution_stats']}")
 
     return result

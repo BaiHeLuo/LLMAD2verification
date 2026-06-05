@@ -1,0 +1,789 @@
+{
+  "summary": {
+    "model": "mock-model",
+    "timestamp": "2026-06-05T13:40:12.348228",
+    "responses_file": "../data/responses/responses_mock-model_20260605_120000.json",
+    "total_cases": 12,
+    "avg_total_score": 73.08,
+    "avg_identification_score": 58.34,
+    "id_accuracy_by_category": {
+      "A": 0.625,
+      "B": 1.0,
+      "C": 1.0,
+      "D": 0.0
+    },
+    "avg_score_by_layer": {
+      "1": 96.58,
+      "2": 96.58,
+      "3": 66.7,
+      "4": 100.0,
+      "5": 58.03,
+      "6": 58.03,
+      "7": 58.42,
+      "8": 93.34,
+      "9": 57.33,
+      "10": 49.34
+    },
+    "code_execution_stats": {
+      "total_with_code": 12,
+      "successful_runs": 4
+    }
+  },
+  "evaluations": [
+    {
+      "test_case_id": "L1_01_standard_tsp",
+      "model": "mock-model",
+      "layer": 1,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "traveling salesman",
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.00013971328735351562}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.363,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.363,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 96.58,
+        "identification_score": 100.0,
+        "algorithm_score": 82.9,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "traveling salesman",
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.363,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L2_01_molecular_ring",
+      "model": "mock-model",
+      "layer": 2,
+      "category": "B",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "traveling salesman",
+          "tsp",
+          "mathematically equivalent",
+          "hamiltonian"
+        ],
+        "category": "B"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.00013971328735351562}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.085,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.085,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 96.58,
+        "identification_score": 100.0,
+        "algorithm_score": 82.9,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "traveling salesman",
+            "tsp",
+            "mathematically equivalent",
+            "hamiltonian"
+          ],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.085,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L3_01_no_return",
+      "model": "mock-model",
+      "layer": 3,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 0.667,
+        "matched_keywords": [
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "scores": {
+        "total_score": 66.7,
+        "identification_score": 66.7,
+        "algorithm_score": null,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 0.667,
+          "matched_keywords": [
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L4_01_tsp_time_window",
+      "model": "mock-model",
+      "layer": 4,
+      "category": "C",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "tsp with time window",
+          "tsptw",
+          "variant"
+        ],
+        "category": "C"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "scores": {
+        "total_score": 100.0,
+        "identification_score": 100.0,
+        "algorithm_score": null,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "tsp with time window",
+            "tsptw",
+            "variant"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L5_01_delivery_algo",
+      "model": "mock-model",
+      "layer": 5,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": false,
+        "confidence_score": 0.0,
+        "matched_keywords": [],
+        "category": "A"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.0001392364501953125}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.082,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.082,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 58.03,
+        "identification_score": 0.0,
+        "algorithm_score": 82.9,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": false,
+          "id_confidence": 0.0,
+          "matched_keywords": [],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.082,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L6_01_benchmark_5city",
+      "model": "mock-model",
+      "layer": 6,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": false,
+        "confidence_score": 0.0,
+        "matched_keywords": [],
+        "category": "A"
+      },
+      "code_execution": {
+        "success": true,
+        "route": [
+          0,
+          1,
+          3,
+          4,
+          2
+        ],
+        "total_distance": 85,
+        "stdout": "__RESULT__{\"route\": [0, 1, 3, 4, 2], \"total_distance\": 85, \"_elapsed\": 0.0001430511474609375}\n",
+        "stderr": "",
+        "elapsed_seconds": 0.083,
+        "error": null
+      },
+      "algorithm_performance": {
+        "approximation_ratio": 1.0625,
+        "optimality_gap_pct": 6.25,
+        "route_valid": true,
+        "execution_time_s": 0.083,
+        "performance_score": 0.829,
+        "timeout": false,
+        "route_validation": {
+          "valid": true,
+          "issues": []
+        },
+        "obtained_distance": 85,
+        "optimal_distance": 80
+      },
+      "scores": {
+        "total_score": 58.03,
+        "identification_score": 0.0,
+        "algorithm_score": 82.9,
+        "layer_specific_score": null,
+        "breakdown": {
+          "identified_correctly": false,
+          "id_confidence": 0.0,
+          "matched_keywords": [],
+          "approximation_ratio": 1.0625,
+          "optimality_gap_pct": 6.25,
+          "route_valid": true,
+          "execution_time_s": 0.083,
+          "extra": {}
+        }
+      }
+    },
+    {
+      "test_case_id": "L7_01_gradual_tsp",
+      "model": "mock-model",
+      "layer": 7,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 1.0,
+        "matched_keywords": [
+          "traveling salesman",
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "delayed_identification": {
+        "first_correct_turn": 3,
+        "total_turns": 4,
+        "per_turn_identification": [
+          {
+            "identified_correctly": false,
+            "confidence_score": 0.0,
+            "matched_keywords": [],
+            "category": "A",
+            "turn": 1
+          },
+          {
+            "identified_correctly": false,
+            "confidence_score": 0.0,
+            "matched_keywords": [],
+            "category": "A",
+            "turn": 2
+          },
+          {
+            "identified_correctly": true,
+            "confidence_score": 0.667,
+            "matched_keywords": [
+              "tsp",
+              "hamiltonian cycle"
+            ],
+            "category": "A",
+            "turn": 3
+          },
+          {
+            "identified_correctly": true,
+            "confidence_score": 0.667,
+            "matched_keywords": [
+              "traveling salesman",
+              "tsp"
+            ],
+            "category": "A",
+            "turn": 4
+          }
+        ],
+        "early_guess_score": 0.2,
+        "convergence_score": 0.667,
+        "identified": true
+      },
+      "scores": {
+        "total_score": 58.42,
+        "identification_score": 100.0,
+        "algorithm_score": null,
+        "layer_specific_score": 48.02,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 1.0,
+          "matched_keywords": [
+            "traveling salesman",
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {
+            "delayed_id": {
+              "first_correct_turn": 3,
+              "total_turns": 4,
+              "per_turn_identification": [
+                {
+                  "identified_correctly": false,
+                  "confidence_score": 0.0,
+                  "matched_keywords": [],
+                  "category": "A",
+                  "turn": 1
+                },
+                {
+                  "identified_correctly": false,
+                  "confidence_score": 0.0,
+                  "matched_keywords": [],
+                  "category": "A",
+                  "turn": 2
+                },
+                {
+                  "identified_correctly": true,
+                  "confidence_score": 0.667,
+                  "matched_keywords": [
+                    "tsp",
+                    "hamiltonian cycle"
+                  ],
+                  "category": "A",
+                  "turn": 3
+                },
+                {
+                  "identified_correctly": true,
+                  "confidence_score": 0.667,
+                  "matched_keywords": [
+                    "traveling salesman",
+                    "tsp"
+                  ],
+                  "category": "A",
+                  "turn": 4
+                }
+              ],
+              "early_guess_score": 0.2,
+              "convergence_score": 0.667,
+              "identified": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_case_id": "L8_01_clear_tsp",
+      "model": "mock-model",
+      "layer": 8,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 0.667,
+        "matched_keywords": [
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "confidence_calibration": {
+        "extracted_confidence": 98.0,
+        "extracted_judgment": true,
+        "judgment_correct": true,
+        "confidence_gap": 3.0,
+        "calibration_score": 1.0
+      },
+      "scores": {
+        "total_score": 93.34,
+        "identification_score": 66.7,
+        "algorithm_score": null,
+        "layer_specific_score": 100.0,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 0.667,
+          "matched_keywords": [
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {
+            "confidence_cal": {
+              "extracted_confidence": 98.0,
+              "extracted_judgment": true,
+              "judgment_correct": true,
+              "confidence_gap": 3.0,
+              "calibration_score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_case_id": "L8_02_similar_problem",
+      "model": "mock-model",
+      "layer": 8,
+      "category": "C",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 0.667,
+        "matched_keywords": [
+          "tsptw",
+          "variant"
+        ],
+        "category": "C"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "confidence_calibration": {
+        "extracted_confidence": 90.0,
+        "extracted_judgment": false,
+        "judgment_correct": true,
+        "confidence_gap": 5.0,
+        "calibration_score": 1.0
+      },
+      "scores": {
+        "total_score": 93.34,
+        "identification_score": 66.7,
+        "algorithm_score": null,
+        "layer_specific_score": 100.0,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 0.667,
+          "matched_keywords": [
+            "tsptw",
+            "variant"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {
+            "confidence_cal": {
+              "extracted_confidence": 90.0,
+              "extracted_judgment": false,
+              "judgment_correct": true,
+              "confidence_gap": 5.0,
+              "calibration_score": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_case_id": "L9_01_reasoning_trace",
+      "model": "mock-model",
+      "layer": 9,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 0.333,
+        "matched_keywords": [
+          "tsp"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "metacognition": {
+        "has_reasoning_chain": true,
+        "reasoning_steps": 4,
+        "has_uncertainty_analysis": true,
+        "has_knowledge_boundary": false,
+        "has_failure_modes": false,
+        "structural_completeness": 0.5,
+        "metacognition_score": 0.6
+      },
+      "scores": {
+        "total_score": 57.33,
+        "identification_score": 33.3,
+        "algorithm_score": null,
+        "layer_specific_score": 60.0,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 0.333,
+          "matched_keywords": [
+            "tsp"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {
+            "metacognition": {
+              "has_reasoning_chain": true,
+              "reasoning_steps": 4,
+              "has_uncertainty_analysis": true,
+              "has_knowledge_boundary": false,
+              "has_failure_modes": false,
+              "structural_completeness": 0.5,
+              "metacognition_score": 0.6
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_case_id": "L10_01_cross_transfer",
+      "model": "mock-model",
+      "layer": 10,
+      "category": "A",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": true,
+        "confidence_score": 0.667,
+        "matched_keywords": [
+          "tsp",
+          "hamiltonian cycle"
+        ],
+        "category": "A"
+      },
+      "code_execution": {
+        "success": false,
+        "route": null,
+        "total_distance": null,
+        "stdout": "__ERROR__name 'solve' is not defined\n",
+        "stderr": "",
+        "elapsed_seconds": 0.082,
+        "error": "name 'solve' is not defined"
+      },
+      "algorithm_performance": {
+        "success": false,
+        "error": "name 'solve' is not defined",
+        "stderr": "",
+        "performance_score": 0.0,
+        "approximation_ratio": null,
+        "optimality_gap_pct": null,
+        "route_valid": false,
+        "execution_time_s": 0.082
+      },
+      "transfer_analogy": {
+        "has_explanation": false,
+        "has_mapping": true,
+        "has_adaptation": true,
+        "has_code": true,
+        "has_comparison": true,
+        "transfer_score": 0.8
+      },
+      "scores": {
+        "total_score": 62.67,
+        "identification_score": 66.7,
+        "algorithm_score": 0.0,
+        "layer_specific_score": 80.0,
+        "breakdown": {
+          "identified_correctly": true,
+          "id_confidence": 0.667,
+          "matched_keywords": [
+            "tsp",
+            "hamiltonian cycle"
+          ],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": false,
+          "execution_time_s": 0.082,
+          "extra": {
+            "transfer": {
+              "has_explanation": false,
+              "has_mapping": true,
+              "has_adaptation": true,
+              "has_code": true,
+              "has_comparison": true,
+              "transfer_score": 0.8
+            }
+          }
+        }
+      }
+    },
+    {
+      "test_case_id": "L10_02_analogy_construction",
+      "model": "mock-model",
+      "layer": 10,
+      "category": "D",
+      "has_error": false,
+      "error": null,
+      "identification": {
+        "identified_correctly": false,
+        "confidence_score": 0.0,
+        "matched_keywords": [],
+        "category": "D"
+      },
+      "code_execution": {
+        "error": "无生成代码"
+      },
+      "algorithm_performance": null,
+      "transfer_analogy": {
+        "has_explanation": true,
+        "has_mapping": true,
+        "has_adaptation": false,
+        "has_code": false,
+        "has_comparison": false,
+        "transfer_score": 0.4
+      },
+      "scores": {
+        "total_score": 36.0,
+        "identification_score": 0.0,
+        "algorithm_score": null,
+        "layer_specific_score": 40.0,
+        "breakdown": {
+          "identified_correctly": false,
+          "id_confidence": 0.0,
+          "matched_keywords": [],
+          "approximation_ratio": null,
+          "optimality_gap_pct": null,
+          "route_valid": null,
+          "execution_time_s": null,
+          "extra": {
+            "transfer": {
+              "has_explanation": true,
+              "has_mapping": true,
+              "has_adaptation": false,
+              "has_code": false,
+              "has_comparison": false,
+              "transfer_score": 0.4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

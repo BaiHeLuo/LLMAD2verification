@@ -1,7 +1,7 @@
 {
   "test_cases": [
     {
-      "id": "L1_standard_tsp",
+      "id": "L1_01_standard_tsp",
       "layer": 1,
       "category": "A",
       "prompt": "Given n cities and the distance between any two cities, a traveling salesman needs to start from one city, visit all cities exactly once, and return to the starting city. Find the shortest route length. What kind of optimization problem is this?",
@@ -19,7 +19,7 @@
       }
     },
     {
-      "id": "L1_math_formal",
+      "id": "L1_02_math_formal",
       "layer": 1,
       "category": "A",
       "prompt": "Given a complete graph G=(V,E) with edge weight function w:E→ℝ⁺, find a Hamiltonian cycle C that minimizes ∑_{e∈C} w(e). What is this problem called in optimization theory?",
@@ -36,7 +36,25 @@
       }
     },
     {
-      "id": "L2_molecular_ring",
+      "id": "L1_03_pcb_drilling",
+      "layer": 1,
+      "category": "A",
+      "prompt": "In PCB manufacturing, a drill head needs to move between a set of hole positions. Each hole must be drilled exactly once, and the drill head must return to the starting position afterward. The goal is to minimize the total travel distance of the drill head. What optimization problem is this?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80
+      }
+    },
+
+    {
+      "id": "L2_01_molecular_ring",
       "layer": 2,
       "category": "B",
       "prompt": "In chemical synthesis, there are n molecular monomers that need to be connected into a cyclic polymer. Connecting monomer i and monomer j releases energy e(i,j). Each monomer must be used exactly once, forming a ring. How should they be ordered to maximize total energy release? What classic optimization problem is this mathematically equivalent to?",
@@ -54,7 +72,7 @@
       }
     },
     {
-      "id": "L2_network_routing",
+      "id": "L2_02_network_routing",
       "layer": 2,
       "category": "B",
       "prompt": "A data packet needs to visit n nodes in a network exactly once and return to the source node. The transmission delay from node i to node j is d(i,j). How should the visit order be arranged to minimize total delay? What type of optimization problem is this?",
@@ -71,32 +89,96 @@
       }
     },
     {
-      "id": "L4_tsp_time_window",
-      "layer": 4,
-      "category": "C",
-      "prompt": "Visit n cities exactly once and return to the starting city. Each city has a service time window, and you must arrive within that window. What is this problem called? What is the key difference from the classic TSP?",
+      "id": "L2_03_equipment_maintenance",
+      "layer": 2,
+      "category": "B",
+      "prompt": "A factory has n machines that need regular maintenance. The maintenance worker starts from the warehouse, each machine must be inspected exactly once, and then returns to the warehouse. The walking time from machine i to machine j is t(i,j). How should the inspection route be planned to minimize total time? What problem is this mathematically isomorphic to?",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25],
+        [10, 0, 35, 25, 30],
+        [15, 35, 0, 30, 20],
+        [20, 25, 30, 0, 15],
+        [25, 30, 20, 15, 0]
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "optimal_distance": 80
+      }
+    },
+
+    {
+      "id": "L3_01_no_return",
+      "layer": 3,
+      "category": "A",
+      "prompt": "Visit n cities, each exactly once, but you do NOT need to return to the starting city. What is this problem called? How does it differ from the problem where you must return to the start? Please explain the difference in graph theory terms (Hamiltonian path vs Hamiltonian cycle) and in computational complexity.",
       "distance_matrix": null,
       "expected_output": {
-        "problem_type": "TSP with Time Windows (TSPTW) / Vehicle Routing Problem with Time Windows",
-        "note": "No code expected for identification-only questions"
+        "problem_type": "Hamiltonian Path Problem / Open TSP",
+        "note": "Should distinguish from TSP (cycle), identify as path variant"
       }
     },
     {
-      "id": "L4_cvrp",
+      "id": "L3_02_allow_revisit",
+      "layer": 3,
+      "category": "A",
+      "prompt": "Visit n cities, you ARE allowed to visit cities more than once, and return to the starting city. The goal is still to minimize total distance. What is this problem called? How does it differ from the problem where each city must be visited exactly once? Consider: if the triangle inequality holds, are the two problems equivalent?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "Metric TSP / Shortest Walk visiting all vertices",
+        "note": "With triangle inequality, equivalent to standard TSP; without it, may be shorter"
+      }
+    },
+    {
+      "id": "L3_03_no_optimization",
+      "layer": 3,
+      "category": "A",
+      "prompt": "Visit n cities each exactly once and return to the starting city. The goal is to find ANY feasible route (not necessarily the shortest). How does this differ computationally from finding the shortest such route? What is the complexity class of each version?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "Hamiltonian Cycle (decision/feasibility) vs TSP (optimization)",
+        "note": "Finding any Hamiltonian cycle is NP-complete; finding shortest is NP-hard"
+      }
+    },
+
+    {
+      "id": "L4_01_tsp_time_window",
       "layer": 4,
       "category": "C",
-      "prompt": "A vehicle departs from a depot, visits n customer locations exactly once, and returns to the depot. The vehicle has a capacity limit, and each customer location has a demand quantity. What is this problem called?",
+      "prompt": "Visit n cities exactly once and return to the starting city. Each city has a service time window [e_i, l_i], and you must arrive at city i within this window. What is this problem called? What are the key differences from the classic TSP in terms of feasibility, complexity, and solution approach?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "TSP with Time Windows (TSPTW)",
+        "note": "TSPTW is harder than TSP; even finding a feasible solution is NP-complete"
+      }
+    },
+    {
+      "id": "L4_02_cvrp",
+      "layer": 4,
+      "category": "C",
+      "prompt": "A vehicle departs from a depot, visits n customer locations exactly once, and returns to the depot. The vehicle has a capacity limit Q, and each customer location i has a demand q_i. The total demand on the route must not exceed Q. What is this problem called? How does the capacity constraint fundamentally change the problem structure?",
       "distance_matrix": null,
       "expected_output": {
         "problem_type": "Capacitated Vehicle Routing Problem (CVRP)",
-        "note": "No code expected for identification-only questions"
+        "note": "May require multiple routes; fundamentally different from single-tour TSP"
       }
     },
     {
-      "id": "L5_delivery_algo",
+      "id": "L4_03_mtsp",
+      "layer": 4,
+      "category": "C",
+      "prompt": "There are m salesmen who need to collectively visit n cities. Each city must be visited by exactly one salesman, and all salesmen start and return to the same depot. The objective is to minimize the total distance traveled by all salesmen. What is this problem called? How does having multiple salesmen change the problem compared to classic TSP?",
+      "distance_matrix": null,
+      "expected_output": {
+        "problem_type": "Multiple Traveling Salesman Problem (mTSP)",
+        "note": "Multiple tours from same depot; partition + routing combined"
+      }
+    },
+
+    {
+      "id": "L5_01_delivery_algo",
       "layer": 5,
       "category": "A",
-      "prompt": "A delivery person needs to deliver packages to 5 locations from a distribution center, visiting each location exactly once, and then return to the center. The travel time matrix between locations is given. Please design an algorithm to plan the route that minimizes total travel time. Do not name the problem, just provide the algorithm directly.",
+      "prompt": "A delivery person needs to deliver packages to 5 locations from a distribution center, visiting each location exactly once, and then return to the center. The travel time matrix between locations is given. Please design an algorithm to plan the route that minimizes total travel time. Do not name the problem — just provide the algorithm directly with clear pseudocode and Python implementation.",
       "distance_matrix": [
         [0, 10, 15, 20, 25],
         [10, 0, 35, 25, 30],
@@ -106,14 +188,51 @@
       ],
       "expected_output": {
         "optimal_distance": 80,
-        "note": "Algorithm design expected"
+        "note": "Algorithm design expected without naming TSP"
       }
     },
     {
-      "id": "L6_benchmark",
+      "id": "L5_02_inspection_algo",
+      "layer": 5,
+      "category": "A",
+      "prompt": "A security inspector must check 7 stations starting from the control center, checking each station exactly once, then returning to the center. The walking time between stations is known. Design an algorithm to find the shortest inspection route. Provide mathematical formulation, pseudocode, complexity analysis, and runnable Python code.",
+      "distance_matrix": [
+        [0, 12, 18, 22, 30, 14, 28],
+        [12, 0, 10, 25, 20, 16, 24],
+        [18, 10, 0, 15, 22, 20, 19],
+        [22, 25, 15, 0, 8, 28, 12],
+        [30, 20, 22, 8, 0, 35, 10],
+        [14, 16, 20, 28, 35, 0, 26],
+        [28, 24, 19, 12, 10, 26, 0]
+      ],
+      "expected_output": {
+        "optimal_distance": 88,
+        "note": "Algorithm design expected without naming TSP"
+      }
+    },
+    {
+      "id": "L5_03_equipment_install",
+      "layer": 5,
+      "category": "A",
+      "prompt": "On a production line, 6 devices need to be installed in sequence, but the installation order can be adjusted. Starting from the first device, proceeding to the last, and then returning to the first for final testing. The switching cost from device i to device j is c(i,j). Design an algorithm to determine the installation order that minimizes total switching cost.",
+      "distance_matrix": [
+        [0, 5, 12, 18, 25, 9],
+        [5, 0, 8, 14, 20, 15],
+        [12, 8, 0, 7, 16, 22],
+        [18, 14, 7, 0, 6, 11],
+        [25, 20, 16, 6, 0, 10],
+        [9, 15, 22, 11, 10, 0]
+      ],
+      "expected_output": {
+        "note": "Algorithm design expected without naming TSP"
+      }
+    },
+
+    {
+      "id": "L6_01_benchmark_5city",
       "layer": 6,
       "category": "A",
-      "prompt": "For the following 5-city TSP instance (distance matrix provided), please generate solving code and report the route and total distance you obtain. We will compare with the known optimal solution.",
+      "prompt": "For the following 5-city TSP instance (distance matrix provided), please generate complete solving code. Implement a `solve(distance_matrix)` function that returns {'route': [...], 'total_distance': ...}. We will compare your result with the known optimal solution (optimal distance = 80).",
       "distance_matrix": [
         [0, 10, 15, 20, 25],
         [10, 0, 35, 25, 30],
@@ -124,6 +243,209 @@
       "expected_output": {
         "optimal_distance": 80,
         "optimal_route": [0, 1, 3, 4, 2]
+      }
+    },
+    {
+      "id": "L6_02_benchmark_10city",
+      "layer": 6,
+      "category": "A",
+      "prompt": "For the following 10-city TSP instance, please generate a complete solver. Implement a `solve(distance_matrix)` function that returns {'route': [...], 'total_distance': ...}. We will compare with the known optimal solution. Use the best algorithm you can design — accuracy matters more than speed for this size.",
+      "distance_matrix": [
+        [0, 22, 35, 40, 28, 15, 50, 33, 18, 45],
+        [22, 0, 18, 30, 42, 25, 38, 20, 12, 36],
+        [35, 18, 0, 12, 25, 30, 45, 28, 22, 40],
+        [40, 30, 12, 0, 15, 35, 50, 22, 28, 32],
+        [28, 42, 25, 15, 0, 20, 30, 38, 45, 18],
+        [15, 25, 30, 35, 20, 0, 22, 40, 30, 42],
+        [50, 38, 45, 50, 30, 22, 0, 12, 35, 28],
+        [33, 20, 28, 22, 38, 40, 12, 0, 25, 15],
+        [18, 12, 22, 28, 45, 30, 35, 25, 0, 40],
+        [45, 36, 40, 32, 18, 42, 28, 15, 40, 0]
+      ],
+      "expected_output": {
+        "note": "10-city benchmark, optimal to be computed by exact solver"
+      }
+    },
+    {
+      "id": "L6_03_heuristic_20city",
+      "layer": 6,
+      "category": "A",
+      "prompt": "For the following 20-city TSP instance, exact algorithms are too slow. Please design and implement a heuristic algorithm that finds a high-quality solution quickly. Implement a `solve(distance_matrix)` function. We will evaluate your solution quality (optimality gap) and running time.",
+      "distance_matrix": [
+        [0,24,36,50,42,18,30,45,28,55,20,38,48,32,14,40,52,22,35,46],
+        [24,0,12,28,35,30,42,20,15,40,25,18,32,45,28,35,48,30,22,40],
+        [36,12,0,15,25,35,48,28,22,32,30,14,20,40,35,28,42,38,18,35],
+        [50,28,15,0,10,40,52,32,30,22,38,18,8,45,42,20,35,42,25,28],
+        [42,35,25,10,0,38,48,28,32,18,40,22,12,42,38,15,28,40,30,22],
+        [18,30,35,40,38,0,15,42,32,50,12,35,45,28,10,42,55,18,38,48],
+        [30,42,48,52,48,15,0,38,40,55,22,45,52,18,20,48,58,28,45,52],
+        [45,20,28,32,28,42,38,0,10,35,30,22,28,40,38,30,42,35,25,35],
+        [28,15,22,30,32,32,40,10,0,30,28,20,25,38,35,28,40,32,20,38],
+        [55,40,32,22,18,50,55,35,30,0,45,25,18,48,48,22,30,45,35,15],
+        [20,25,30,38,40,12,22,30,28,45,0,28,38,22,15,40,52,15,30,42],
+        [38,18,14,18,22,35,45,22,20,25,28,0,12,38,32,25,38,32,18,30],
+        [48,32,20,8,12,45,52,28,25,18,38,12,0,42,42,18,30,38,22,25],
+        [32,45,40,45,42,28,18,40,38,48,22,38,42,0,18,35,20,25,40,45],
+        [14,28,35,42,38,10,20,38,35,48,15,32,42,18,0,38,50,12,32,45],
+        [40,35,28,20,15,42,48,30,28,22,40,25,18,35,38,0,15,35,28,20],
+        [52,48,42,35,28,55,58,42,40,30,52,38,30,20,50,15,0,45,40,28],
+        [22,30,38,42,40,18,28,35,32,45,15,32,38,25,12,35,45,0,25,40],
+        [35,22,18,25,30,38,45,25,20,35,30,18,22,40,32,28,40,25,0,32],
+        [46,40,35,28,22,48,52,35,38,15,42,30,25,45,45,20,28,40,32,0]
+      ],
+      "expected_output": {
+        "note": "20-city heuristic benchmark, quality evaluated against near-optimal"
+      }
+    },
+
+    {
+      "id": "L7_01_gradual_tsp",
+      "layer": 7,
+      "category": "A",
+      "multi_turn": true,
+      "prompts": [
+        "There are n points, and between every pair of points there is a positive number. What problem structure does this suggest so far?",
+        "Now add this constraint: you need to find an ordering that processes all n points. Based on this additional information, what optimization problem might this be?",
+        "Further constraint: this ordering must form a cycle (the last point connects back to the first). Now what problem is this?",
+        "Final constraint: the objective is to minimize the sum of the numbers along the edges of the cycle. What is this problem? Please give your final answer with full explanation."
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "note": "Should identify TSP progressively; early rounds may guess 'clustering' or 'graph problem'"
+      }
+    },
+    {
+      "id": "L7_02_gradual_tasks",
+      "layer": 7,
+      "category": "B",
+      "multi_turn": true,
+      "prompts": [
+        "There are n tasks that need to be processed. What kind of problem is this?",
+        "After processing task i, then processing task j incurs a switching cost c(i,j). Does this change your assessment?",
+        "All tasks must be processed exactly once. What optimization problem does this resemble?",
+        "After processing the last task, the system must return to its initial state (incurring another switching cost). Now what is the complete problem? Please give your final identification."
+      ],
+      "expected_output": {
+        "problem_type": "Traveling Salesman Problem (TSP)",
+        "note": "Disguised as task scheduling; should converge to TSP by round 3-4"
+      }
+    },
+    {
+      "id": "L7_03_gradual_distractor",
+      "layer": 7,
+      "category": "C",
+      "multi_turn": true,
+      "prompts": [
+        "There are n locations that need to be visited. What type of problem is this?",
+        "Each location has a time constraint for the visit. What does this suggest?",
+        "Specifically, each location has a service time window [e_i, l_i] — you must arrive within this window. Is this the standard TSP?",
+        "The objective is to minimize total travel distance while respecting all time windows. What is this problem called? Is it a standard TSP or something different? Explain the key differences."
+      ],
+      "expected_output": {
+        "problem_type": "TSP with Time Windows (TSPTW)",
+        "note": "Should NOT converge to standard TSP; should identify as TSPTW variant"
+      }
+    },
+
+    {
+      "id": "L8_01_clear_tsp",
+      "layer": 8,
+      "category": "A",
+      "prompt": "Is the following problem the Traveling Salesman Problem: 'Visit n cities each exactly once and return to the starting city, minimizing total distance'? Please provide: (1) Your judgment (Yes/No), (2) Your reasoning, (3) Your confidence level (0-100%). Format your answer clearly with these three components.",
+      "distance_matrix": null,
+      "expected_output": {
+        "judgment": true,
+        "expected_confidence": 95,
+        "note": "Clear TSP, high confidence expected"
+      }
+    },
+    {
+      "id": "L8_02_similar_problem",
+      "layer": 8,
+      "category": "C",
+      "prompt": "Is the following problem the standard Traveling Salesman Problem: 'Visit n cities, each city has a visit time window, find the shortest route satisfying all time windows'? Please provide: (1) Your judgment (Yes/No), (2) Your reasoning explaining the key differences, (3) Your confidence level (0-100%).",
+      "distance_matrix": null,
+      "expected_output": {
+        "judgment": false,
+        "expected_confidence": 85,
+        "note": "TSPTW, not standard TSP; model should express lower confidence or identify differences"
+      }
+    },
+    {
+      "id": "L8_03_disguised_problem",
+      "layer": 8,
+      "category": "B",
+      "prompt": "Is the following mathematically equivalent to the Traveling Salesman Problem: 'Connect n molecules into a ring, maximizing total bond energy, each molecule used exactly once'? Please provide: (1) Your judgment (Yes/No/Equivalent), (2) Your detailed reasoning about the mathematical mapping, (3) Your confidence level (0-100%).",
+      "distance_matrix": null,
+      "expected_output": {
+        "judgment": true,
+        "expected_confidence": 80,
+        "note": "Mathematically equivalent TSP; confidence calibration test"
+      }
+    },
+
+    {
+      "id": "L9_01_reasoning_trace",
+      "layer": 9,
+      "category": "A",
+      "prompt": "Consider this problem: 'A robot arm must visit n soldering points on a circuit board, each exactly once, returning to the home position, minimizing total arm movement distance.'\n\nPlease perform the following metacognitive analysis:\n1. **Reasoning Chain**: What are the key steps in your reasoning to identify this problem? List them step by step.\n2. **Critical Features**: Which specific features of the problem description were most important for your identification? Rank them.\n3. **Potential Pitfalls**: What similar problems could you have confused this with? Why didn't you choose those?\n4. **Uncertainty Source**: Where does the greatest uncertainty in your judgment come from — the data, the constraints, or the objective function?",
+      "distance_matrix": null,
+      "expected_output": {
+        "note": "Metacognitive analysis; evaluate quality of reasoning chain and self-awareness"
+      }
+    },
+    {
+      "id": "L9_02_knowledge_boundary",
+      "layer": 9,
+      "category": "A",
+      "prompt": "You have identified and solved TSP-type problems in previous questions. Now consider:\n\n1. **Knowledge Inventory**: What algorithmic approaches do you know for TSP? List them with their pros/cons.\n2. **Knowledge Boundaries**: If I asked you to design a completely new heuristic algorithm for TSP that no one has proposed before, which parts of your existing knowledge would be insufficient? What would you need to learn?\n3. **Self-Assessment**: On a scale of 1-10, how confident are you in each of these abilities: (a) recognizing TSP variants, (b) implementing known algorithms correctly, (c) designing novel heuristics, (d) proving algorithm correctness? Explain each rating.\n4. **Failure Modes**: Describe scenarios where your TSP solutions might fail or perform poorly.",
+      "distance_matrix": null,
+      "expected_output": {
+        "note": "Knowledge boundary self-assessment; evaluate honesty and depth of self-awareness"
+      }
+    },
+
+    {
+      "id": "L10_01_cross_transfer",
+      "layer": 10,
+      "category": "A",
+      "prompt": "You have just designed a 'nearest neighbor' heuristic for the Traveling Salesman Problem. Now consider a drone package delivery problem:\n\nA drone departs from a warehouse, delivers packages to multiple locations, but has limited battery. After each delivery, it must decide whether to return to the warehouse to recharge before continuing. The drone can carry one package at a time.\n\nPlease:\n1. Explain how the 'nearest neighbor' algorithm would need to be modified for this new constraint.\n2. Provide the adapted algorithm in pseudocode.\n3. Implement it in Python as a function `solve_drone(distance_matrix, battery_capacity, delivery_locations)`.\n4. Analyze how this new problem differs from standard TSP in terms of solution structure.",
+      "distance_matrix": [
+        [0, 10, 15, 20, 25, 30],
+        [10, 0, 35, 25, 30, 20],
+        [15, 35, 0, 30, 20, 25],
+        [20, 25, 30, 0, 15, 35],
+        [25, 30, 20, 15, 0, 10],
+        [30, 20, 25, 35, 10, 0]
+      ],
+      "expected_output": {
+        "note": "Transfer test: adapt TSP heuristic to constrained drone delivery problem"
+      }
+    },
+    {
+      "id": "L10_02_analogy_construction",
+      "layer": 10,
+      "category": "D",
+      "prompt": "Please construct a NEW problem description that is mathematically similar to the 'Knapsack Problem' but in a completely different application domain (NOT resource allocation, NOT item selection). Your constructed problem should:\n\n1. Be set in a novel domain (e.g., information filtering, gene selection, music playlist creation).\n2. Preserve the mathematical structure of the knapsack problem (capacity constraint + value maximization).\n3. Include specific parameters and constraints.\n4. Explain clearly how your new problem maps to the knapsack problem (which elements correspond to items, weights, values, and capacity).\n\nThis tests your ability to abstract problem structure and apply it creatively.",
+      "distance_matrix": null,
+      "expected_output": {
+        "note": "Analogy construction; evaluate creativity and correctness of structural mapping"
+      }
+    },
+    {
+      "id": "L10_03_core_abstraction",
+      "layer": 10,
+      "category": "D",
+      "prompt": "The '2-opt' local search algorithm for TSP works by repeatedly selecting two edges in the tour and swapping them to reduce total distance.\n\nPlease:\n1. **Abstract the core idea**: What is the fundamental principle behind 2-opt? Express it in domain-independent terms.\n2. **Apply to a new domain**: A job shop scheduling problem requires ordering n jobs on a machine, where the transition cost from job i to job j is c(i,j). How would you apply the abstracted 2-opt principle to optimize the job ordering?\n3. **Implement**: Provide Python code for a `two_opt_scheduling(cost_matrix)` function.\n4. **Compare**: How does the 2-opt adaptation for scheduling differ from 2-opt for TSP? Are there any operations that are valid for one but not the other?",
+      "distance_matrix": [
+        [0, 8, 15, 22, 12],
+        [8, 0, 10, 18, 20],
+        [15, 10, 0, 6, 14],
+        [22, 18, 6, 0, 9],
+        [12, 20, 14, 9, 0]
+      ],
+      "expected_output": {
+        "note": "Core abstraction and cross-domain application of 2-opt"
       }
     }
   ]
